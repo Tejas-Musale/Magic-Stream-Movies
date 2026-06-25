@@ -203,9 +203,9 @@ func LoginUser(client *mongo.Client) gin.HandlerFunc {
 			Path:  "/",
 			// Domain:   "localhost",
 			MaxAge:   86400,
-			Secure:   false,
+			Secure:   true,
 			HttpOnly: true,
-			SameSite: http.SameSiteLaxMode,
+			SameSite: http.SameSiteNoneMode,
 		})
 		http.SetCookie(c.Writer, &http.Cookie{
 			Name:  "refresh_token",
@@ -213,9 +213,9 @@ func LoginUser(client *mongo.Client) gin.HandlerFunc {
 			Path:  "/",
 			// Domain:   "localhost",
 			MaxAge:   604800,
-			Secure:   false,
+			Secure:   true,
 			HttpOnly: true,
-			SameSite: http.SameSiteLaxMode,
+			SameSite: http.SameSiteNoneMode,
 		})
 
 		c.JSON(http.StatusOK, models.UserResponse{

@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"context"
-	"log"
+	//"log"
 	"os"
 	"strconv"
 
@@ -21,7 +21,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 
-	"github.com/joho/godotenv"
+	//"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
@@ -203,10 +203,10 @@ func GetRecommendedMovies(client *mongo.Client) gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
-		err = godotenv.Load(".env")
-		if err != nil {
-			log.Println("Warning: .env file not found")
-		}
+		// err = godotenv.Load(".env")
+		// if err != nil {
+		// 	log.Println("Warning: .env file not found")
+		// }
 		var recommendedMovieLimitVal int64 = 5
 
 		recommendedMovieLimitStr := os.Getenv("RECOMMENDED_MOVIE_LIMIT")

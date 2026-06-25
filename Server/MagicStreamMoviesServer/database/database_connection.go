@@ -4,22 +4,23 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"github.com/joho/godotenv"
+
+	//"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 func Connect() *mongo.Client {
-	err := godotenv.Load(".env")
+	// err := godotenv.Load(".env")
 
-	if err != nil {
-		log.Println("Error loading .env file")
-	}
+	// if err != nil {
+	// 	log.Println("Error loading .env file")
+	// }
 
 	MongoDb := os.Getenv("MONGODB_URI")
 
 	if MongoDb == "" {
-		log.Fatal("MONGODB_URI not set in .env file")
+		log.Fatal("MONGODB_URI environment variable i s not set")
 	}
 
 	fmt.Println("Connecting to MongoDB at", MongoDb)
@@ -36,10 +37,10 @@ func Connect() *mongo.Client {
 }
 
 func OpenCollection(collectionName string, client *mongo.Client) *mongo.Collection {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Println("Error loading .env file")
-	}
+	// err := godotenv.Load(".env")
+	// if err != nil {
+	// 	log.Println("Error loading .env file")
+	// }
 
 	databaseName := os.Getenv("DATABASE_NAME")
 
@@ -52,4 +53,3 @@ func OpenCollection(collectionName string, client *mongo.Client) *mongo.Collecti
 	}
 	return collection
 }
-

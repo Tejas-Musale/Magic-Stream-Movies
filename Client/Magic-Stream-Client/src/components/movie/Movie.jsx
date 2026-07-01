@@ -3,9 +3,21 @@ import { Link } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCirclePlay} from '@fortawesome/free-solid-svg-icons';
 import "./Movie.css";
+import { motion } from "framer-motion";
+
 const Movie = ({movie,updateMovieReview}) => {
     return (
-        <div className="col-md-4 mb-4" key={movie._id}>
+        <motion.div
+    className="col-md-4 mb-4"
+    key={movie._id}
+    whileHover={{
+        y: -10,
+        scale: 1.03
+    }}
+    transition={{
+        duration: 0.25
+    }}
+>
             <Link
                 to={`/stream/${movie.youtube_id}`}
                 style={{ textDecoration: 'none', color: 'inherit' }}
@@ -26,11 +38,17 @@ const Movie = ({movie,updateMovieReview}) => {
                 </div>
                 <div className = "card-body d-flex flex-column">
                     <h5 className ="card-title">{movie.title}</h5>
-                    <p className="card-text mb-2">{movie.imdb_id}</p>
+                    <div className="movie-meta">
+                        {movie.genre?.[0]?.genre_name}
+                    </div>
                 </div>
                 {movie.ranking?.ranking_name && (
-                    <span className="badge bg-dark m-3 p-2" style={{fontSize:"1rem"}}>
-                        {movie.ranking.ranking_name}
+                    <span
+                      className={`ranking-badge ${
+                        movie.ranking?.ranking_name?.toLowerCase()
+                      }`}
+                    >
+                      {movie.ranking?.ranking_name}
                     </span>
                 )}
                   {updateMovieReview && (
@@ -47,7 +65,7 @@ const Movie = ({movie,updateMovieReview}) => {
                     )}
             </div>
             </Link>
-        </div>
+        </motion.div>
     )
 }
 export default Movie;

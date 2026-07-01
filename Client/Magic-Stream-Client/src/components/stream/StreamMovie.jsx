@@ -26,16 +26,15 @@ const StreamMovie = () => {
 
     return (
         <div className="container mt-4">
-            <iframe
+            <ReactPlayer
+                src={`https://www.youtube.com/watch?v=${yt_id}`}
+                controls
                 width="100%"
                 height="600px"
-                src={`https://www.youtube.com/embed/${yt_id}`}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
             />
         </div>
     );
 };
+
 
 export default StreamMovie;

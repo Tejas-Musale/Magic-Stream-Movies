@@ -1,0 +1,7 @@
+.nav-link {
+    margin-right: 20px;
+}
+
+.nav-link:hover {
+    color: #E50914 !important;
+}

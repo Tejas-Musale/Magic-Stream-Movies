@@ -13,17 +13,23 @@ const Header = ({handleLogout}) => {
 
 
     return (
-        <Navbar bg="dark" variant='dark' expand="lg" stick="top" className="shadow-sm">
+        <Navbar
+            expand="lg"
+            className="shadow-lg"
+            style={{
+                background:"#111",
+                backdropFilter:"blur(10px)"
+            }}
+        >
             <Container>
-                <Navbar.Brand>
-                     {/* <img
-                        alt=""
-                        src={logo}
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top me-2"
-                    /> */}
-                    Magic Stream
+                <Navbar.Brand
+                    style={{
+                        fontWeight: "700",
+                        fontSize: "2rem",
+                        color: "#E50914"
+                    }}
+                >
+                    🎬 MagicStream
                 </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="main-navbar-nav" />

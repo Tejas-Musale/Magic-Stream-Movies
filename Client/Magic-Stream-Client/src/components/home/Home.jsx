@@ -2,14 +2,18 @@ import {useState, useEffect} from 'react';
 import axiosClient from '../../api/axiosConfig'
 import Movies from '../movies/Movies';
 import Spinner from '../spinner/Spinner';
+import Hero from '../hero/Hero';
 
 const Home =() => {
 
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState();
+    const [search,setSearch] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
+        
         const fetchMovies = async () => {
             setLoading(true);
             setMessage("");
@@ -34,17 +38,42 @@ const Home =() => {
         fetchMovies();
     }, []);
 
+    const filteredMovies =
+            movies.filter((movie)=>
+               movie.title.toLowerCase().includes(search.toLowerCase())
+            );
+
     return (
         <>
+            <Hero />
+
+            <div className="container mt-4">
+                <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="🔍 Search movies..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+            </div>
+
+            <div className="container mt-5">
+    <h2 className="text-light fw-bold">
+        Trending Movies
+    </h2>
+</div>
+
             {loading ? (
-                <Spinner/>
-            ):  (
-                <Movies movies ={movies} message ={message}/>
+                <Spinner />
+            ) : (
+                <Movies
+                    movies={filteredMovies}
+                    message={message}
+                />
             )}
         </>
-
     );
 
-};
+}
 
 export default Home;

@@ -35,10 +35,10 @@ const Header = ({handleLogout}) => {
             <Navbar.Toggle aria-controls="main-navbar-nav" />
                 <Navbar.Collapse>
                     <Nav className ="me-auto">
-                        <Nav.Link as = {NavLink} to="/">
+                        <Nav.Link as = {NavLink} to="/" style={{color: 'white'}}>
                             Home
                         </Nav.Link>
-                        <Nav.Link as = {NavLink} to="/recommended">
+                        <Nav.Link as = {NavLink} to="/recommended" style={{color: 'white'}}>
                             Recommended
                         </Nav.Link>
                     </Nav>
